@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Book do
-  permit_params :title, :year, :price
-
+  permit_params :title, :year, :price, :format_id
 end
