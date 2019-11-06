@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_04_052518) do
+ActiveRecord::Schema.define(version: 2019_11_06_030629) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -51,6 +51,8 @@ ActiveRecord::Schema.define(version: 2019_11_04_052518) do
     t.float "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "format_id"
+    t.index ["format_id"], name: "index_books_on_format_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -87,4 +89,5 @@ ActiveRecord::Schema.define(version: 2019_11_04_052518) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "books", "formats"
 end
