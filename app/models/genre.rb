@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 class Genre < ApplicationRecord
-  has_and_belongs_to_many :books
+  has_many :book_genres
+  has_many :books, through: :book_genres
 
   validates :name, presence: true
 end

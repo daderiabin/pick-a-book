@@ -5,5 +5,8 @@ class Book < ApplicationRecord
   validates :price, numericality: true
 
   belongs_to :format
-  has_and_belongs_to_many :genres
+  has_many :book_genres
+  has_many :genres, through: :book_genres
+  accepts_nested_attributes_for :book_genres, allow_destroy: true
+
 end
