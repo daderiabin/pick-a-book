@@ -15,7 +15,7 @@ ActiveAdmin.register Book do
         n_f.input :genre
       end
     end
-
+ 
     f.actions
   end
 end

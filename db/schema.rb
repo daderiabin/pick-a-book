@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_06_065615) do
+ActiveRecord::Schema.define(version: 2019_11_07_163137) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -45,6 +45,12 @@ ActiveRecord::Schema.define(version: 2019_11_06_065615) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "book_formats", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "book_genres", force: :cascade do |t|
     t.integer "book_id"
     t.integer "genre_id"
@@ -60,8 +66,8 @@ ActiveRecord::Schema.define(version: 2019_11_06_065615) do
     t.float "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "format_id"
-    t.index ["format_id"], name: "index_books_on_format_id"
+    t.integer "book_format_id"
+    t.index ["book_format_id"], name: "index_books_on_book_format_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -69,12 +75,6 @@ ActiveRecord::Schema.define(version: 2019_11_06_065615) do
     t.string "name"
     t.string "phone"
     t.string "address"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "formats", force: :cascade do |t|
-    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -98,5 +98,5 @@ ActiveRecord::Schema.define(version: 2019_11_06_065615) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "books", "formats"
+  add_foreign_key "books", "book_formats"
 end
