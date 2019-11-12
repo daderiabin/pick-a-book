@@ -4,4 +4,10 @@
   <p>Format: <%= @book.book_format.name %></p>
   <p>Published: <%= @book.year %></p>
   <p>Price: <%= @book.price.to_s %></p>
+  <p>
+    Genre(s):
+    <% @book.genres.each do |genre| %>
+        <%= link_to genre.name, genre %>
+    <% end %>
+  </p>
 </div>

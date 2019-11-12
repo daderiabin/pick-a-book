@@ -7,6 +7,14 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <nav>
+      <ul>
+        <li><%= link_to "Books", books_path %></li>
+        <li><%= link_to "Genres", genres_path %></li>
+        <li><%= link_to "Contact", permalink_path('contact') %></li>
+        <li><%= link_to "About Us", permalink_path('about_us') %></li>
+      </ul>
+    </nav>
   </head>
 
   <body>

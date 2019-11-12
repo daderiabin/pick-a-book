@@ -1,2 +1,13 @@
-<h1>Genres#show</h1>
-<p>Find me in app/views/genres/show.html.erb</p>
+<h1><%= @genre.name %></h1>
+
+<% if @genre.books.count == 0 %>
+  <h2>Sorry, this genre has no books yet.</h2>
+<% else %>
+  <ul>
+    <% @genre.books.each do |book| %>
+      <li>
+        <%= link_to book.title, book %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
