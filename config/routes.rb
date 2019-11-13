@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   resources :books, only: %i[index show]
   resources :genres, only: %i[index show]
+  resources :book_formats, only: %i[index show]
 
   root to: 'books#index'
 end
