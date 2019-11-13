@@ -10,10 +10,10 @@ class BooksController < ApplicationController
   end
 
   def on_sale
-    @books = Book.where("email is null or email = ''")
+    @books = Book.where('on_sale == 1')
   end
 
-  def is_new
-    @books = Book.where("email is null or email = ''")
+  def new_books
+    @books = Book.where('is_new == 1')
   end
 end

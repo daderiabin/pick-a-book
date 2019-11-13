@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :books, only: %i[index show]
   get '/on_sale', to: 'books#on_sale'
-  get '/new_books', to: 'books#is_new'
+  get '/new_books', to: 'books#new_books'
 
   resources :genres, only: %i[index show]
   resources :book_formats, only: %i[index show]

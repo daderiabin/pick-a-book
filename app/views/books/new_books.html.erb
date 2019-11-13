@@ -1,0 +1,7 @@
+<h2>New Books</h2>
+
+<% if @books.count == 0 %>
+  <h2>Sorry, no new books here yet.</h2>
+<% else %>
+  <%= render @books %>
+<% end %>
