@@ -3,9 +3,5 @@
 <% if @genre.books.count == 0 %>
   <h2>Sorry, this genre has no books yet.</h2>
 <% else %>
-  <div>
-    <% @genre.books.each do |book| %>
-        <%= render book %>
-    <% end %>
-  </div>
+  <%= render @genre.books %>
 <% end %>
