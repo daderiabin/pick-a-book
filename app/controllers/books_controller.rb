@@ -8,4 +8,12 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
   end
+
+  def on_sale
+    @books = Book.where("email is null or email = ''")
+  end
+
+  def is_new
+    @books = Book.where("email is null or email = ''")
+  end
 end
