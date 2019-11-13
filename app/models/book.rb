@@ -9,4 +9,11 @@ class Book < ApplicationRecord
   has_many :genres, through: :book_genres
   accepts_nested_attributes_for :book_genres, allow_destroy: true
 
+  def self.search(search, format)
+    if search
+      where('title LIKE ? AND book_format_id LIKE ?', "%#{search}%", "%#{format}%")
+    else
+      all
+    end
+  end
 end
