@@ -11,6 +11,7 @@ ActiveAdmin.register Book do
       f.input :title
       f.input :year
       f.input :price
+      f.input :on_sale
       f.has_many :book_genres, allow_destroy: true do |n_f|
         n_f.input :genre
       end
