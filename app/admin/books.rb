@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Book do
-  permit_params :title, :year, :price, :on_sale, :is_new, :book_format_id, book_genres_attributes: %i[id book_id genre_id _destroy]
+  permit_params :title, :year, :price, :on_sale, :is_new, :image, :book_format_id, book_genres_attributes: %i[id book_id genre_id _destroy]
 
   form do |f|
     f.semantic_errors *f.object.errors.keys
@@ -16,6 +16,7 @@ ActiveAdmin.register Book do
       f.has_many :book_genres, allow_destroy: true do |n_f|
         n_f.input :genre
       end
+      f.input :image, as: :file
     end
 
     f.actions
