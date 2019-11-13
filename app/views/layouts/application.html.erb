@@ -4,27 +4,40 @@
     <title>PickABook</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <nav>
-      <ul>
-        <li><%= link_to "Books", books_path %></li>
-        <li><%= link_to "Genres", genres_path %></li>
-        <li><%= link_to "Contact", permalink_path('contact') %></li>
-        <li><%= link_to "About Us", permalink_path('about_us') %></li>
-      </ul>
-    </nav>
-    <%= form_tag books_path, :method => 'get' do %>
-      <p>
-        <%= text_field_tag :search, params[:search] %>
-        <%= select_tag :format, options_from_collection_for_select(BookFormat.all, "id", "name"), include_blank: "All" %>
-        <%= submit_tag "Search", :name => nil %>
-      </p>
-    <% end %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
   </head>
 
   <body>
-    <%= yield %>
+    <section class="section">
+      <h1 class="title"><%= link_to "Pick-a-Book", root_path %></h1>
+          <nav class="navbar">
+            <ul>
+              <li><%= link_to "Books", books_path %></li>
+              <li><%= link_to "Genres", genres_path %></li>
+              <li><%= link_to "Contact", permalink_path('contact') %></li>
+              <li><%= link_to "About Us", permalink_path('about_us') %></li>
+            </ul>
+          </nav>
+          <%= form_tag books_path, :method => 'get' do %>
+            <p>
+              <%= text_field_tag :search, params[:search] %>
+              <%= select_tag :format, options_from_collection_for_select(BookFormat.all, "id", "name"), include_blank: "All" %>
+              <%= submit_tag "Search", :name => nil %>
+            </p>
+          <% end %>
+          <nav>
+            <ul>
+              <li><%= link_to "Sale", '/on_sale' %></li>
+              <li><%= link_to "New", '/new_books' %></li>
+            </ul>
+          </nav>
+    </section>
+    <section class="section">
+      <%= yield %>
+    </section>
   </body>
 </html>
