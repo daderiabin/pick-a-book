@@ -3,6 +3,8 @@
 <% if @books.count == 0 %>
   <h2>Sorry, no books here yet.</h2>
 <% else %>
-  <%= render @books %>
+  <div class="columns is-multiline">
+    <%= render @books %>
+  </div>
 <% end %>
 <%= pagy_nav(@pagy).html_safe %>

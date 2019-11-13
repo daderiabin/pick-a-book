@@ -3,5 +3,7 @@
 <% if @genre.books.count == 0 %>
   <h2>Sorry, this genre has no books yet.</h2>
 <% else %>
-  <%= render @genre.books %>
+  <div class="columns is-multiline">
+    <%= render @genre.books %>
+  </div>
 <% end %>

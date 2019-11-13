@@ -1,16 +1,18 @@
-<div class="card book">
-  <div class="card-content">
-    <p class="title">
-      <%= link_to book.title, book %>
-    </p>
-    <p><strong>Format:</strong> <%= book.book_format.name %></p>
-    <p><strong>Release Year:</strong> <%= book.year %></p>
-    <p><strong>Price:</strong> <%= book.price.to_s %></p>
-    <p>
-      <strong>Genre(s):</strong>
-      <% book.genres.each do |genre| %>
-          <%= link_to genre.name, genre %>
-      <% end %>
-    </p>
+<div class="column is-one-third">
+  <div class="card book">
+    <div class="card-content">
+      <p class="title">
+        <%= link_to book.title, book %>
+      </p>
+      <p><strong>Format:</strong> <%= book.book_format.name %></p>
+      <p><strong>Release Year:</strong> <%= book.year %></p>
+      <p><strong>Price:</strong> <%= book.price.to_s %></p>
+      <p>
+        <strong>Genre(s):</strong>
+        <% book.genres.each do |genre| %>
+            <%= link_to genre.name, genre %>
+        <% end %>
+      </p>
+    </div>
   </div>
 </div>
