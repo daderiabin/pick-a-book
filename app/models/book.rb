@@ -11,6 +11,14 @@ class Book < ApplicationRecord
 
   has_one_attached :image
 
+  def medium
+    image.variant(resize: '600x600!')
+  end
+
+  def small
+    image.variant(resize: '300x300!')
+  end
+
   def self.search(search, format)
     if search
       where('title LIKE ? AND book_format_id LIKE ?', "%#{search}%", "%#{format}%")

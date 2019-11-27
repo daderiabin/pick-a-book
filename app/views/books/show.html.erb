@@ -1,5 +1,7 @@
 <h1><%= @book.title %></h1>
 
+<%= image_tag @book.small %>
+
 <div>
   <p>Format: <%= @book.book_format.name %></p>
   <p>Published: <%= @book.year %></p>

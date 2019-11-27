@@ -2,7 +2,7 @@
   <% if book.image.present? %>
     <div class="card-image">
       <figure class="image is-4by3">
-        <%= image_tag url_for(book.image) %>
+        <%= image_tag book.small %>
       </figure>
     </div>
   <% end %>
