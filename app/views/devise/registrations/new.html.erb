@@ -8,6 +8,21 @@
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
+  <div>
+    <%= f.label :address %><br />
+    <%= f.text_field :address, autocomplete: false %>
+  </div>
+
+  <div>
+    <%= f.label :city %><br />
+    <%= f.text_field :city, autocomplete: false %>
+  </div>
+
+  <div class="field">
+    <%= f.label :province_id %><br />
+    <%= f.select :province_id, Province.all.collect {|x| [x.name, x.id]}, {}%>
+  </div>
+
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
