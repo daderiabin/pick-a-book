@@ -12,11 +12,11 @@ class Book < ApplicationRecord
   has_one_attached :image
 
   def medium
-    image.variant(resize: '600x600!')
+    # image.variant(resize: '600x600!')
   end
 
   def small
-    image.variant(resize: '300x300!')
+    # image.variant(resize: '300x300!')
   end
 
   def self.search(search, format)

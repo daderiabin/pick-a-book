@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
+  post 'books/add_to_cart/:id', to: 'books#add_to_cart', as: 'add_to_cart'
+  post 'books/change_qnty/:id', to: 'books#change_qnty', as: 'change_qnty'
+  delete 'books/remove_from_cart/:id', to: 'books#remove_from_cart', as: 'remove_from_cart'
+
   resources :pages
   get '/static/:permalink', to: 'pages#permalink', as: 'permalink'
 

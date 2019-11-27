@@ -20,6 +20,13 @@
             <%= link_to genre.name, genre %>
         <% end %>
       </p>
+      <% if @cart.include?(book) %>
+        <p>Product is in your cart.</p>
+      <% else %>
+        <p>
+          <%= link_to 'Add to Cart', add_to_cart_path(book.id), method: :post %>
+        </p>
+      <% end %>
     </div>
   </div>
 </div>

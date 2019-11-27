@@ -25,6 +25,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'pagy', '~> 3.5'
 # Image resizing
 gem "mini_magick"
+gem "faker"
+gem "smarter_csv"
 
 
 # Use Active Storage variant

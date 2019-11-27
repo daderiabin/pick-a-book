@@ -1,5 +1,32 @@
 <h1 class="title is-4">Books</h1>
 
+<%= debug session[:cart] %>
+<%= debug session[:qnty] %>
+
+<details>
+  <summary>Shopping Cart</summary>
+  <% if @cart.empty? %>
+    <p>No items in cart.</p>
+  <% else %>
+    <ul>
+      <% @cart.each do |book| %>
+        <li>
+          <p>
+            <%= book.title %> - <%= number_to_currency book.price %>
+            <%= form_tag change_qnty_path(book.id), :method => 'post' do %>
+              <%= label_tag "Quantity: " %>
+              <%= text_field_tag :qnty, @qnty[book.id.to_s] %>
+              <%= submit_tag "Change Quantity" %>
+            <% end %>
+            <%= link_to '- Remove', remove_from_cart_path(book.id), method: :delete %>
+          </p>
+          <p>-----------</p>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</details>
+
 <% if @books.count == 0 %>
   <h2>Sorry, no books here yet.</h2>
 <% else %>
