@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_27_061127) do
+ActiveRecord::Schema.define(version: 2019_12_01_215125) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -91,15 +91,6 @@ ActiveRecord::Schema.define(version: 2019_11_27_061127) do
     t.boolean "on_sale"
     t.boolean "is_new"
     t.index ["book_format_id"], name: "index_books_on_book_format_id"
-  end
-
-  create_table "customers", force: :cascade do |t|
-    t.string "email"
-    t.string "name"
-    t.string "phone"
-    t.string "address"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "genres", force: :cascade do |t|

@@ -27,6 +27,11 @@
   <% end %>
 </details>
 
+<% if flash[:note] %>
+  <p><%= flash[:note] %></p>
+  <% flash.discard %>
+<% end %>
+
 <% if @books.count == 0 %>
   <h2>Sorry, no books here yet.</h2>
 <% else %>

@@ -18,6 +18,7 @@ class BooksController < ApplicationController
     qnty = 1
     session[:cart] << id unless session[:cart].include?(id)
     session[:qnty][id] = qnty unless session[:qnty].include?(id)
+    flash[:note] = 'An item was added to your cart!'
     redirect_to root_path
   end
 
