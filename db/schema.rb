@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_01_215942) do
+ActiveRecord::Schema.define(version: 2019_12_01_221001) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -99,6 +99,18 @@ ActiveRecord::Schema.define(version: 2019_12_01_215942) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "line_items", force: :cascade do |t|
+    t.integer "book_id", null: false
+    t.integer "order_id", null: false
+    t.string "title"
+    t.integer "quantity"
+    t.float "price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_line_items_on_book_id"
+    t.index ["order_id"], name: "index_line_items_on_order_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
@@ -140,5 +152,7 @@ ActiveRecord::Schema.define(version: 2019_12_01_215942) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "books", "book_formats"
+  add_foreign_key "line_items", "books"
+  add_foreign_key "line_items", "orders"
   add_foreign_key "orders", "users"
 end

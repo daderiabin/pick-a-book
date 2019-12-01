@@ -9,6 +9,10 @@ class Book < ApplicationRecord
   has_many :genres, through: :book_genres
   accepts_nested_attributes_for :book_genres, allow_destroy: true
 
+  has_many :line_items
+  has_many :orders, through: :line_items
+  accepts_nested_attributes_for :line_items, allow_destroy: true
+
   has_one_attached :image
 
   def medium
