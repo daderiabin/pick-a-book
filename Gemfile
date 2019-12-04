@@ -27,6 +27,7 @@ gem 'pagy', '~> 3.5'
 gem "mini_magick"
 gem "faker"
 gem "smarter_csv"
+gem 'stripe'
 
 
 # Use Active Storage variant

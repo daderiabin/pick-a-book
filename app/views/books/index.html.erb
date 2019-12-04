@@ -1,31 +1,35 @@
 <h1 class="title is-4">Books</h1>
 
-<%= debug session[:cart] %>
-<%= debug session[:qnty] %>
-
-<details>
-  <summary>Shopping Cart</summary>
-  <% if @cart.empty? %>
-    <p>No items in cart.</p>
-  <% else %>
-    <ul>
-      <% @cart.each do |book| %>
-        <li>
-          <p>
-            <%= book.title %> - <%= number_to_currency book.price %>
-            <%= form_tag change_qnty_path(book.id), :method => 'post' do %>
-              <%= label_tag "Quantity: " %>
-              <%= text_field_tag :qnty, @qnty[book.id.to_s] %>
-              <%= submit_tag "Change Quantity" %>
-            <% end %>
-            <%= link_to '- Remove', remove_from_cart_path(book.id), method: :delete %>
-          </p>
-          <p>-----------</p>
-        </li>
+<% if current_user %>
+  <details>
+    <summary>Shopping Cart</summary>
+    <% if @cart %>
+      <% if @cart.empty? %>
+        <p>No items in cart.</p>
+      <% else %>
+        <ul>
+          <% @cart.each do |book| %>
+            <li>
+              <p>
+                <%= book.title %> - <%= number_to_currency book.price %>
+                <%= form_tag change_qnty_path(book.id), :method => 'post' do %>
+                  <%= label_tag "Quantity: " %>
+                  <%= text_field_tag :qnty, @qnty[book.id.to_s] %>
+                  <%= submit_tag "Change Quantity" %>
+                <% end %>
+                <%= link_to '- Remove', remove_from_cart_path(book.id), method: :delete %>
+              </p>
+              <p>-----------</p>
+            </li>
+          <% end %>
+        </ul>
+        <%= button_to 'Checkout', checkout_create_path, method: :post, params: {cart: @cart, qnty: @qnty, taxes: session[:taxes], user_id: current_user.id}, remote: true %>
       <% end %>
-    </ul>
-  <% end %>
-</details>
+    <% end %>
+  </details>
+<% end %>
+
+<p><%= session[:taxes] %></p>
 
 <% if flash[:note] %>
   <p><%= flash[:note] %></p>

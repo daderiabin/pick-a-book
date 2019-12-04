@@ -17,8 +17,9 @@ class BooksController < ApplicationController
     id = params[:id].to_i
     qnty = 1
     session[:cart] << id unless session[:cart].include?(id)
-    session[:qnty][id] = qnty unless session[:qnty].include?(id)
+    session[:qnty][id] = qnty
     flash[:note] = 'An item was added to your cart!'
+    session[:taxes] = {}
     redirect_to root_path
   end
 
@@ -26,6 +27,8 @@ class BooksController < ApplicationController
     id = params[:id].to_i
     session[:cart].delete(id)
     session[:qnty].delete(id.to_s)
+    flash[:note] = 'An item was removed from your cart!'
+    session[:taxes] = {}
     redirect_to root_path
   end
 
@@ -33,6 +36,7 @@ class BooksController < ApplicationController
     id = params[:id].to_i
     qnty = params[:qnty].to_i
     session[:qnty][id] = qnty
+    # session[:taxes] = {}
     redirect_to root_path
   end
 
@@ -49,10 +53,28 @@ class BooksController < ApplicationController
   def init_session
     session[:cart] ||= []
     session[:qnty] ||= {}
+    session[:taxes] = {}
   end
 
   def load_cart
+    @total = 0
+    @current_user = User.find(current_user.id) if current_user
     @cart = Book.find(session[:cart])
     @qnty = session[:qnty]
+
+    @cart.each do |item|
+      @total += (item.price.to_f * 100) * @qnty[item.id.to_s]
+    end
+
+    if current_user
+      hst = @current_user.province.hst * @total
+      gst = @current_user.province.gst * @total
+      pst = @current_user.province.pst * @total
+      session[:taxes] = {
+        'HST' => hst.to_i,
+        'GST' => gst.to_i,
+        'PST' => pst.to_i
+      }
+    end
   end
 end
